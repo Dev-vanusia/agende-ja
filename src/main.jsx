@@ -17,19 +17,19 @@ const router = createBrowserRouter([
     errorElement: <Error/>,
     children: [
       {
-        path: '/f-agende-ja',
+        path: '/agende-ja',
         element: <Home/>
       },
       {
-        path: '/f-agende-ja/agendamento',
+        path: '/agende-ja/agendamento',
         element: <Appointments/>
       },
       {
-        path: '/f-agende-ja/registro',
+        path: '/agende-ja/registro',
         element: <Authenticate action="Register"/>
       },
       {
-        path: '/f-agende-ja/login',
+        path: '/agende-ja/login',
         element: <Authenticate action="Login"/>
       }
     ],
