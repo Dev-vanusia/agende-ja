@@ -7,10 +7,11 @@ import { getInputs } from "../utils/scheduling";
 import { getSlots } from "../utils/slots";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LifeLine } from "react-loading-indicators";
+import { LifeLine, ThreeDot } from "react-loading-indicators";
 
 const Appointments = () => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const [slots, setSlots] = useState([]);
     const [activeSlotId, setActiveSlotId] = useState(null);
@@ -51,7 +52,8 @@ const Appointments = () => {
         const mail = form.number.value;
         const rg = form.rg.value;
 
-        if (name !== "" && data !== "" && cpf !== "" && number !== "" && mail !== "" && rg !== "") {
+        if (name !== "" && data !== "" && cpf !== "" && number !== "" && mail !== "" && rg !== "" && activeSlotId !== "") {
+            setLoading(true);
             const { id, message } = await postAppointments({
                 usuario_id: JSON.parse(localStorage.getItem('user_id')),
                 vaga_id: activeSlotId,
@@ -62,7 +64,6 @@ const Appointments = () => {
                 paciente_email: form.mail.value,
                 paciente_rg: form.rg.value
             });
-
             callToGetSlots();
             showMessage(true, message, id)
             form.reset();
@@ -112,7 +113,7 @@ const Appointments = () => {
                                 }
                             </section>
                             <button type="submit" className="bg-darkM text-white text-lg font-semibold px-8 py-2 rounded-lg">
-                                CONFIRMAR
+                                {!loading ? 'CONFIRMAR' : <ThreeDot color={"#FFF"} size='small' />}
                             </button>
                         </form>
                     </section>

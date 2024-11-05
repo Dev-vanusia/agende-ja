@@ -23,7 +23,7 @@ const FormAuthenticate = ({ action }) => {
         }
 
         if (action === 'Register') {
-            const isRegistered = await postRegister({ nome: form.name.value, senha: form.password.value, mae: form.mother.value, nascimento: form.birthdate.value, cpf });
+            const isRegistered = await postRegister({ nome: form.name.value, senha: form.password.value, mae: form.mother.value, nascimento: form.birthdate.value, cpf }, setLoading);
             if (isRegistered) return navigate('/agende-ja')
         }
     }
