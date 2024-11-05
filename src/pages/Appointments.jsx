@@ -54,6 +54,7 @@ const Appointments = () => {
 
         if (name !== "" && data !== "" && cpf !== "" && number !== "" && mail !== "" && rg !== "" && activeSlotId !== "") {
             setLoading(true);
+            
             const { id, message } = await postAppointments({
                 usuario_id: JSON.parse(localStorage.getItem('user_id')),
                 vaga_id: activeSlotId,
@@ -64,6 +65,8 @@ const Appointments = () => {
                 paciente_email: form.mail.value,
                 paciente_rg: form.rg.value
             });
+
+            setLoading(false);
             callToGetSlots();
             showMessage(true, message, id)
             form.reset();
