@@ -8,7 +8,7 @@ import { postLogin, postRegister } from '../../api/auth';
 import logoIcon from '../../assets/logo-icon.png'
 
 const FormAuthenticate = ({ action }) => {
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const sendData = async (e) => {
