@@ -9,8 +9,12 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('auth_token'));
-        if (!token) return navigate('/agende-ja/registro');
+        try {
+            const token = JSON.parse(localStorage.getItem('auth_token'));
+            if (!token) return navigate('/agende-ja/registro');
+        } catch (err) {
+            console.log(err)
+        }
     }, [])
 
     const cards = getCards();

@@ -6,17 +6,19 @@ export const postLogin = async (formData, setLoading) => {
         const results = await apiFetch.post('/login', formData);
 
         const token = await results.data.token;
-        const userId = await results.data.user_id
+        const userId = await results.data.user_id;
+
+        if (token === undefined || userId === undefined) return false;
 
         localStorage.setItem('auth_token', JSON.stringify(token));
         localStorage.setItem('user_id', JSON.stringify(userId));
 
         setLoading(false);
-        return true
+        return true;
     } catch (err) {
         console.log(err);
         setLoading(false);
-        return false
+        return false;
     }
 }
 

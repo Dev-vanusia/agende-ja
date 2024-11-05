@@ -8,6 +8,7 @@ import { postLogin, postRegister } from '../../api/auth';
 import logoIcon from '../../assets/logo-icon.png'
 
 const FormAuthenticate = ({ action }) => {
+    const [invalidLogin, setInvalidLogin] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -19,7 +20,13 @@ const FormAuthenticate = ({ action }) => {
 
         if (action === 'Login') {
             const isLoggedIn = await postLogin({ cpf, senha: form.password.value }, setLoading);
-            if (isLoggedIn) return navigate('/agende-ja')
+            if (isLoggedIn) {
+                setInvalidLogin(false);
+                return navigate('/agende-ja')
+            } else {
+                setLoading(false);
+                setInvalidLogin(true);
+            }
         }
 
         if (action === 'Register') {
@@ -50,7 +57,7 @@ const FormAuthenticate = ({ action }) => {
                             </div>
                         )
                     }
-
+                    {invalidLogin && <p className='my-2 text-alert font-poppins font-light text-sm'>Não foi possível realizar o login. Tente Novamente!</p>}
                     <button className='text-white bg-darkM font-poppins font-semibold px-8 py-2 rounded-lg w-3/4 m-auto block shadow-xl' type='submit'>
                         {loading ?
                             <ThreeDot color={"#FFF"} size='small' />
