@@ -3,7 +3,7 @@ import Slots from '../components/Slots';
 import Footer from "../components/Footer";
 
 import { postAppointments } from "../api/appointments";
-import { getInputs } from "../utils/scheduling";
+import { getInputs } from "../utils/appointments";
 import { getSlots } from "../utils/slots";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -51,8 +51,9 @@ const Appointments = () => {
         const number = form.number.value;
         const mail = form.number.value;
         const rg = form.rg.value;
+        const cns = form.cns.value;
 
-        if (name !== "" && data !== "" && cpf !== "" && number !== "" && mail !== "" && rg !== "" && activeSlotId !== "") {
+        if (name !== "" && data !== "" && cpf !== "" && number !== "" && mail !== "" && rg !== "" && activeSlotId !== "" &&  cns !== "") {
             setLoading(true);
             
             const { id, message } = await postAppointments({
@@ -63,7 +64,8 @@ const Appointments = () => {
                 paciente_cpf: form.cpf.value,
                 paciente_tel: form.number.value,
                 paciente_email: form.mail.value,
-                paciente_rg: form.rg.value
+                paciente_rg: form.rg.value,
+                paciente_cns: cns
             });
 
             setLoading(false);

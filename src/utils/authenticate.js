@@ -9,6 +9,7 @@ export const getInputs = (action) => {
             { type: 'text', name: 'name', placeholder: 'Nome...', label: 'Nome Completo:' },
             ...inputs,
             { type: 'text', name: 'mother', placeholder: 'Nome da Mãe...', label: 'Nome da Mãe:' },
+            { type: 'text', name: 'cns', placeholder: 'SUS...', label: 'Cartão Nacional do SUS'},
             { type: 'date', name: 'birthdate', placeholder: 'Nascimento...', label: 'Data de Nascimento:' },
         ];
     }
