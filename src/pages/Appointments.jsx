@@ -26,7 +26,7 @@ const Appointments = () => {
 
     const callToGetSlots = async () => {
         const results = await getSlots();
-        if (!results) navigate('/agende-ja') 
+        if (!results) navigate('/login') 
         setSlots(results)
     }
 
